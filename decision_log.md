@@ -99,6 +99,14 @@ drugs that happen to share tokens, which is worse than leaving them
 distinct. That normalization belongs in a dedicated step with a real
 reference dataset, not bundled into casing cleanup.
 
+2026-11=08: Fixed month-level sampling bias (original pull clustered
+entirely in the first ~5 days of 2023). Rewrote as 12 monthly queries,
+now covering all 12 months. Known residual limitation: within each
+month, records still cluster on the 1st-2nd day due to openFDA's
+skip+limit <= 25000 cap combined with high daily report volume — this
+dataset is valid for month-level trend analysis but not for any
+day-of-month or day-of-week analysis, which would be biased.
+
 
 ## 06_06_finalize_clean.py — Flattens and cleans data
 Flattened patient.drug and patient.reaction into
