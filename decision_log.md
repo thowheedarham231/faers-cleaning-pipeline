@@ -108,3 +108,9 @@ than multiplying rows per drug, keeping the row counts documented
 earlier accurate. Exported both full and deduplicated versions as
 CSV instead of pickle, since a portfolio piece needs to be openable
 by anyone reviewing the repo, not just in Python.
+
+2026-08-XX: Split drug_names into a separate drug-level export
+(one row per drug mention) for accurate per-drug counting in
+visualizations — the report-level flattened string undercounts
+drugs appearing multiple times per report (e.g. "HUMIRA" vs
+"HUMIRA; HUMIRA" were being treated as distinct categories).
